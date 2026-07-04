@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { ShoppingBag, User, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { ShoppingBag, User, Menu, X, Shield } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { useSession } from "@/lib/auth-hook";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,7 +15,20 @@ export function SiteHeader() {
   const { count } = useCart();
   const { user } = useSession();
   const [open, setOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      setIsAdmin(false);
+      return;
+    }
+    let cancelled = false;
+    supabase.rpc("current_is_admin", {}).then(({ data, error }) => {
+      if (!cancelled) setIsAdmin(!!data && !error);
+    });
+    return () => { cancelled = true; };
+  }, [user]);
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -41,9 +54,15 @@ export function SiteHeader() {
         <div className="flex items-center gap-1">
           {user ? (
             <>
-              <Link to="/account" className="hidden touch-min items-center gap-1.5 rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
-                <User className="h-4 w-4" /> Account
-              </Link>
+              {isAdmin ? (
+                <Link to="/admin/dashboard" className="hidden touch-min items-center gap-1.5 rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
+                  <Shield className="h-4 w-4" /> Admin Panel
+                </Link>
+              ) : (
+                <Link to="/account" className="hidden touch-min items-center gap-1.5 rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
+                  <User className="h-4 w-4" /> Account
+                </Link>
+              )}
               <button onClick={signOut} className="hidden touch-min items-center rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
                 Sign out
               </button>
@@ -77,7 +96,11 @@ export function SiteHeader() {
             ))}
             {user ? (
               <>
-                <Link to="/account" onClick={() => setOpen(false)} className="touch-min flex items-center border-b border-border/40 px-2 text-sm">Account</Link>
+                {isAdmin ? (
+                  <Link to="/admin/dashboard" onClick={() => setOpen(false)} className="touch-min flex items-center border-b border-border/40 px-2 text-sm">Admin Panel</Link>
+                ) : (
+                  <Link to="/account" onClick={() => setOpen(false)} className="touch-min flex items-center border-b border-border/40 px-2 text-sm">Account</Link>
+                )}
                 <button onClick={() => { setOpen(false); signOut(); }} className="touch-min flex items-center px-2 text-left text-sm">Sign out</button>
               </>
             ) : (
