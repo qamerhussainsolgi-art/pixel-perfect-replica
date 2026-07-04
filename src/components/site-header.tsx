@@ -9,7 +9,9 @@ const nav = [
   { to: "/", label: "Home" },
   { to: "/collections", label: "Collections" },
   { to: "/blog", label: "Journal" },
+  { to: "/contact", label: "Contact" },
 ];
+
 
 export function SiteHeader() {
   const { count } = useCart();
