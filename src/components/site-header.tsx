@@ -54,9 +54,15 @@ export function SiteHeader() {
         <div className="flex items-center gap-1">
           {user ? (
             <>
-              <Link to="/account" className="hidden touch-min items-center gap-1.5 rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
-                <User className="h-4 w-4" /> Account
-              </Link>
+              {isAdmin ? (
+                <Link to="/admin/dashboard" className="hidden touch-min items-center gap-1.5 rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
+                  <Shield className="h-4 w-4" /> Admin Panel
+                </Link>
+              ) : (
+                <Link to="/account" className="hidden touch-min items-center gap-1.5 rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
+                  <User className="h-4 w-4" /> Account
+                </Link>
+              )}
               <button onClick={signOut} className="hidden touch-min items-center rounded-md px-3 text-sm hover:bg-secondary md:inline-flex">
                 Sign out
               </button>
