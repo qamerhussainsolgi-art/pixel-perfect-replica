@@ -96,7 +96,11 @@ export function SiteHeader() {
             ))}
             {user ? (
               <>
-                <Link to="/account" onClick={() => setOpen(false)} className="touch-min flex items-center border-b border-border/40 px-2 text-sm">Account</Link>
+                {isAdmin ? (
+                  <Link to="/admin/dashboard" onClick={() => setOpen(false)} className="touch-min flex items-center border-b border-border/40 px-2 text-sm">Admin Panel</Link>
+                ) : (
+                  <Link to="/account" onClick={() => setOpen(false)} className="touch-min flex items-center border-b border-border/40 px-2 text-sm">Account</Link>
+                )}
                 <button onClick={() => { setOpen(false); signOut(); }} className="touch-min flex items-center px-2 text-left text-sm">Sign out</button>
               </>
             ) : (
