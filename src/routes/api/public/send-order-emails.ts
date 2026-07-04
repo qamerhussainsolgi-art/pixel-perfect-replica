@@ -38,7 +38,7 @@ export const Route = createFileRoute("/api/public/send-order-emails")({
         `;
 
         const { data: admins } = await supabaseAdmin.from("admin_users").select("email");
-        const adminEmails = (admins ?? []).map((a) => a.email);
+        const adminEmails = (admins ?? []).map((a: { email: string }) => a.email);
 
         const send = (to: string[], subject: string, html: string) =>
           fetch("https://connector-gateway.lovable.dev/resend/emails", {

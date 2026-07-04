@@ -14,7 +14,7 @@ function SettingsPage() {
 
   useEffect(() => {
     if (admin?.role !== "developer") return;
-    supabase.from("admin_users").select("*").order("created_at").then(({ data }) => setAdmins(data ?? []));
+    supabase.from("admin_users").select("*").order("created_at").then(({ data }: { data: any[] | null }) => setAdmins(data ?? []));
   }, [admin]);
 
   if (admin?.role !== "developer") {
@@ -27,7 +27,7 @@ function SettingsPage() {
     if (error) return toast.error(error.message);
     toast.success("Admin added");
     setF({ name: "", phone: "", email: "", role: "client" });
-    supabase.from("admin_users").select("*").order("created_at").then(({ data }) => setAdmins(data ?? []));
+    supabase.from("admin_users").select("*").order("created_at").then(({ data }: { data: any[] | null }) => setAdmins(data ?? []));
   }
   async function remove(id: string) {
     if (!confirm("Remove this admin?")) return;
