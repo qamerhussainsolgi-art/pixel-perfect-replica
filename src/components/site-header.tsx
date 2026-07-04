@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { ShoppingBag, User, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { ShoppingBag, User, Menu, X, Shield } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { useSession } from "@/lib/auth-hook";
 import { supabase } from "@/integrations/supabase/client";
