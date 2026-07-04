@@ -15,7 +15,20 @@ export function SiteHeader() {
   const { count } = useCart();
   const { user } = useSession();
   const [open, setOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      setIsAdmin(false);
+      return;
+    }
+    let cancelled = false;
+    supabase.rpc("current_is_admin", {}).then(({ data, error }) => {
+      if (!cancelled) setIsAdmin(!!data && !error);
+    });
+    return () => { cancelled = true; };
+  }, [user]);
 
   async function signOut() {
     await supabase.auth.signOut();
