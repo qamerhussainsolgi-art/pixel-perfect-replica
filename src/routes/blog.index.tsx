@@ -41,7 +41,7 @@ function BlogIndex() {
         <p className="text-center text-sm text-muted-foreground">Nothing published yet.</p>
       ) : (
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {posts.map((p) => (
+          {posts.map((p: any) => (
             <Link key={p.id} to="/blog/$slug" params={{ slug: p.seo_slug }} className="group block">
               {p.featured_image && (
                 <div className="overflow-hidden rounded-md">

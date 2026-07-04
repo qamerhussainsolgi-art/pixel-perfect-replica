@@ -14,7 +14,7 @@ function OrderDetail() {
   const { id } = Route.useParams();
   const [order, setOrder] = useState<any>(null);
   useEffect(() => {
-    supabase.from("orders").select("*").eq("id", id).maybeSingle().then(({ data }) => setOrder(data));
+    supabase.from("orders").select("*").eq("id", id).maybeSingle().then(({ data }: { data: any }) => setOrder(data));
   }, [id]);
 
   if (!order) return <div className="mx-auto max-w-[720px] px-4 py-16 text-center text-muted-foreground">Loading…</div>;

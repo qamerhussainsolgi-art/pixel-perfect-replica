@@ -52,7 +52,7 @@ export function AdminGate({ children }: { children: ReactNode }) {
 
     check();
 
-    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+    const { data: sub } = supabase.auth.onAuthStateChange((event: string) => {
       if (event === "SIGNED_OUT") {
         setState({ admin: null, loading: false });
         navigate({ to: "/login" });
