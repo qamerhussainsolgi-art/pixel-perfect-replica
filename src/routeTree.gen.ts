@@ -9,38 +9,382 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CollectionsIndexRouteImport } from './routes/collections.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as ProductSlugRouteImport } from './routes/product.$slug'
+import { Route as CollectionsCategoryRouteImport } from './routes/collections.$category'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
+import { Route as AdminProfileRouteImport } from './routes/admin.profile'
+import { Route as AdminProductsRouteImport } from './routes/admin.products'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminLogsRouteImport } from './routes/admin.logs'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as AuthenticatedCheckoutRouteImport } from './routes/_authenticated/checkout'
+import { Route as AuthenticatedAccountIndexRouteImport } from './routes/_authenticated/account.index'
+import { Route as ApiPublicSendOrderEmailsRouteImport } from './routes/api/public/send-order-emails'
+import { Route as AuthenticatedAccountOrdersIdRouteImport } from './routes/_authenticated/account.orders.$id'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectionsIndexRoute = CollectionsIndexRouteImport.update({
+  id: '/collections/',
+  path: '/collections/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductSlugRoute = ProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsCategoryRoute = CollectionsCategoryRouteImport.update({
+  id: '/collections/$category',
+  path: '/collections/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProfileRoute = AdminProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProductsRoute = AdminProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLogsRoute = AdminLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AuthenticatedCheckoutRoute = AuthenticatedCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAccountIndexRoute =
+  AuthenticatedAccountIndexRouteImport.update({
+    id: '/account/',
+    path: '/account/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const ApiPublicSendOrderEmailsRoute =
+  ApiPublicSendOrderEmailsRouteImport.update({
+    id: '/api/public/send-order-emails',
+    path: '/api/public/send-order-emails',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedAccountOrdersIdRoute =
+  AuthenticatedAccountOrdersIdRouteImport.update({
+    id: '/account/orders/$id',
+    path: '/account/orders/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/cart': typeof CartRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/checkout': typeof AuthenticatedCheckoutRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/products': typeof AdminProductsRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/collections/$category': typeof CollectionsCategoryRoute
+  '/product/$slug': typeof ProductSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/collections/': typeof CollectionsIndexRoute
+  '/api/public/send-order-emails': typeof ApiPublicSendOrderEmailsRoute
+  '/account/': typeof AuthenticatedAccountIndexRoute
+  '/account/orders/$id': typeof AuthenticatedAccountOrdersIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/cart': typeof CartRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/checkout': typeof AuthenticatedCheckoutRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/products': typeof AdminProductsRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/collections/$category': typeof CollectionsCategoryRoute
+  '/product/$slug': typeof ProductSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/collections': typeof CollectionsIndexRoute
+  '/api/public/send-order-emails': typeof ApiPublicSendOrderEmailsRoute
+  '/account': typeof AuthenticatedAccountIndexRoute
+  '/account/orders/$id': typeof AuthenticatedAccountOrdersIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/admin': typeof AdminRouteWithChildren
+  '/cart': typeof CartRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/checkout': typeof AuthenticatedCheckoutRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/products': typeof AdminProductsRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/collections/$category': typeof CollectionsCategoryRoute
+  '/product/$slug': typeof ProductSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/collections/': typeof CollectionsIndexRoute
+  '/api/public/send-order-emails': typeof ApiPublicSendOrderEmailsRoute
+  '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
+  '/_authenticated/account/orders/$id': typeof AuthenticatedAccountOrdersIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/cart'
+    | '/login'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/checkout'
+    | '/admin/analytics'
+    | '/admin/blog'
+    | '/admin/dashboard'
+    | '/admin/logs'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/profile'
+    | '/admin/seo'
+    | '/admin/settings'
+    | '/blog/$slug'
+    | '/collections/$category'
+    | '/product/$slug'
+    | '/blog/'
+    | '/collections/'
+    | '/api/public/send-order-emails'
+    | '/account/'
+    | '/account/orders/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/cart'
+    | '/login'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/checkout'
+    | '/admin/analytics'
+    | '/admin/blog'
+    | '/admin/dashboard'
+    | '/admin/logs'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/profile'
+    | '/admin/seo'
+    | '/admin/settings'
+    | '/blog/$slug'
+    | '/collections/$category'
+    | '/product/$slug'
+    | '/blog'
+    | '/collections'
+    | '/api/public/send-order-emails'
+    | '/account'
+    | '/account/orders/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/admin'
+    | '/cart'
+    | '/login'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/_authenticated/checkout'
+    | '/admin/analytics'
+    | '/admin/blog'
+    | '/admin/dashboard'
+    | '/admin/logs'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/profile'
+    | '/admin/seo'
+    | '/admin/settings'
+    | '/blog/$slug'
+    | '/collections/$category'
+    | '/product/$slug'
+    | '/blog/'
+    | '/collections/'
+    | '/api/public/send-order-emails'
+    | '/_authenticated/account/'
+    | '/_authenticated/account/orders/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AdminRoute: typeof AdminRouteWithChildren
+  CartRoute: typeof CartRoute
+  LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  CollectionsCategoryRoute: typeof CollectionsCategoryRoute
+  ProductSlugRoute: typeof ProductSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  CollectionsIndexRoute: typeof CollectionsIndexRoute
+  ApiPublicSendOrderEmailsRoute: typeof ApiPublicSendOrderEmailsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +392,191 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collections/': {
+      id: '/collections/'
+      path: '/collections'
+      fullPath: '/collections/'
+      preLoaderRoute: typeof CollectionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$slug': {
+      id: '/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/product/$slug'
+      preLoaderRoute: typeof ProductSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/$category': {
+      id: '/collections/$category'
+      path: '/collections/$category'
+      fullPath: '/collections/$category'
+      preLoaderRoute: typeof CollectionsCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/profile': {
+      id: '/admin/profile'
+      path: '/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminProfileRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/products': {
+      id: '/admin/products'
+      path: '/products'
+      fullPath: '/admin/products'
+      preLoaderRoute: typeof AdminProductsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/logs': {
+      id: '/admin/logs'
+      path: '/logs'
+      fullPath: '/admin/logs'
+      preLoaderRoute: typeof AdminLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_authenticated/checkout': {
+      id: '/_authenticated/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof AuthenticatedCheckoutRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/account/': {
+      id: '/_authenticated/account/'
+      path: '/account'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AuthenticatedAccountIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/public/send-order-emails': {
+      id: '/api/public/send-order-emails'
+      path: '/api/public/send-order-emails'
+      fullPath: '/api/public/send-order-emails'
+      preLoaderRoute: typeof ApiPublicSendOrderEmailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/account/orders/$id': {
+      id: '/_authenticated/account/orders/$id'
+      path: '/account/orders/$id'
+      fullPath: '/account/orders/$id'
+      preLoaderRoute: typeof AuthenticatedAccountOrdersIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCheckoutRoute: typeof AuthenticatedCheckoutRoute
+  AuthenticatedAccountIndexRoute: typeof AuthenticatedAccountIndexRoute
+  AuthenticatedAccountOrdersIdRoute: typeof AuthenticatedAccountOrdersIdRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCheckoutRoute: AuthenticatedCheckoutRoute,
+  AuthenticatedAccountIndexRoute: AuthenticatedAccountIndexRoute,
+  AuthenticatedAccountOrdersIdRoute: AuthenticatedAccountOrdersIdRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminBlogRoute: typeof AdminBlogRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminLogsRoute: typeof AdminLogsRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminProductsRoute: typeof AdminProductsRoute
+  AdminProfileRoute: typeof AdminProfileRoute
+  AdminSeoRoute: typeof AdminSeoRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminBlogRoute: AdminBlogRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminLogsRoute: AdminLogsRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminProductsRoute: AdminProductsRoute,
+  AdminProfileRoute: AdminProfileRoute,
+  AdminSeoRoute: AdminSeoRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AdminRoute: AdminRouteWithChildren,
+  CartRoute: CartRoute,
+  LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  CollectionsCategoryRoute: CollectionsCategoryRoute,
+  ProductSlugRoute: ProductSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  CollectionsIndexRoute: CollectionsIndexRoute,
+  ApiPublicSendOrderEmailsRoute: ApiPublicSendOrderEmailsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
