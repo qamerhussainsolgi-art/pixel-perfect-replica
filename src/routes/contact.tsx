@@ -56,7 +56,8 @@ function ContactPage() {
       setMessage("");
     } catch (err: any) {
       console.error("Submission error:", err);
-      toast.error("Failed to send your message. Please try again.");
+      const detail = err?.message || err?.error_description || "Unknown error";
+      toast.error(`Failed to send: ${detail}`);
     } finally {
       setIsSubmitting(false);
     }
