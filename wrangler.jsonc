@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "eshaal-s-gulkari-boutique",
+  // wrangler.jsonc
+"name": "eshaal-s-gulkari",
   "compatibility_date": "2026-07-03",
   "compatibility_flags": ["nodejs_compat"],
   "main": "dist/server/server.js",
