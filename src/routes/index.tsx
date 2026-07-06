@@ -55,7 +55,7 @@ function Home() {
               <div className="absolute -inset-3 stitch-border" />
               <img
                 src="/images/hero-embroidery.jpg"
-                alt="Deep plum kurta with gold embroidery"
+                alt="Deep plum piece with gold embroidery"
                 width={1600}
                 height={1200}
                 className="relative aspect-[4/3] w-full rounded-md object-cover shadow-xl"
