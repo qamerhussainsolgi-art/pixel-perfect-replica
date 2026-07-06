@@ -31,6 +31,7 @@ function ProfilePage() {
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
+    if (!admin) return;
     if (!name.trim() || !email.trim() || !phone.trim()) {
       toast.error("Please fill out all required fields.");
       return;
