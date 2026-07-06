@@ -24,7 +24,7 @@ export function SiteFooter() {
           <div>
             <p className="font-serif text-sm uppercase tracking-wider text-foreground/70">Care</p>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li>hello@eshaalsgulkari.com</li>
+              <li>contact.eshaalsgulkari@gmail.com</li>
               <li>WhatsApp orders welcome</li>
               <li>Shipping across Pakistan</li>
             </ul>
