@@ -31,7 +31,7 @@ export const Route = createFileRoute("/collections/$category")({
     return {
       meta: [
         { title: `${label} Collection — Eshaal's Gulkari` },
-        { name: "description", content: `${label} hand-embroidered kurtas. ${COLLECTION_TAGLINE[cat] ?? ""}` },
+        { name: "description", content: `${label} hand-embroidered pieces. ${COLLECTION_TAGLINE[cat] ?? ""}` },
         { property: "og:title", content: `${label} Collection — Eshaal's Gulkari` },
         { property: "og:description", content: COLLECTION_TAGLINE[cat] ?? "" },
         { property: "og:url", content: `/collections/${cat}` },
