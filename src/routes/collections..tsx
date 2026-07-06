@@ -32,7 +32,7 @@ const categoryDataQO = (categoryName: string) => queryOptions({
   },
 });
 
-export const Route = createFileRoute("/collections/$category")({
+export const Route = createFileRoute("/collections/")({
   loader: ({ context, params }) => context.queryClient.ensureQueryData(categoryDataQO(params.category)),
   head: ({ loaderData }) => {
     if (!loaderData) {

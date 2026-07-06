@@ -21,7 +21,7 @@ const productQO = (slug: string) => queryOptions({
   },
 });
 
-export const Route = createFileRoute("/product/$slug")({
+export const Route = createFileRoute("/product/")({
   loader: ({ context, params }) => context.queryClient.ensureQueryData(productQO(params.slug)),
   component: ProductPage,
   notFoundComponent: () => (
