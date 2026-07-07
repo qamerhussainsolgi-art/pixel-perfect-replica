@@ -18,10 +18,12 @@ const postsQO = queryOptions({
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Journal — Eshaal's Gulkari" },
-      { name: "description", content: "Notes on hand embroidery, craft, and care from the Eshaal's Gulkari studio." },
-      { property: "og:title", content: "Journal — Eshaal's Gulkari" },
-      { property: "og:url", content: "/blog" },
+      { title: "Hand Embroidery Journal | Eshaal's Gulkari Blog" },
+      { name: "description", content: "Notes on hand embroidery, traditional craft, and styling care from the Eshaal's Gulkari studio." },
+      { property: "og:title", content: "Hand Embroidery Journal | Eshaal's Gulkari Blog" },
+      { property: "og:description", content: "Notes on hand embroidery, traditional craft, and styling care from the Eshaal's Gulkari studio." },
+      { property: "og:url", content: "https://eshaalsgulkari.com/blog" },
+      { property: "og:image", content: "https://eshaalsgulkari.com/images/craft-story.jpg" },
     ],
     links: [{ rel: "canonical", href: "/blog" }],
   }),

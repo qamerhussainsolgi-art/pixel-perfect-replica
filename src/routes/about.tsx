@@ -4,12 +4,17 @@ import { Heart, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Our Story — Eshaal's Gulkari" },
+      { title: "About Eshaal's Gulkari | Our Hand Embroidery Story" },
       {
         name: "description",
         content: "Learn about the hand embroidery craft of Eshaal's Gulkari, owned by Tazeen Faisal Khan. Discover our seasonal Summer, Winter, and Luxury collections.",
       },
+      { property: "og:title", content: "About Eshaal's Gulkari | Our Hand Embroidery Story" },
+      { property: "og:description", content: "Learn about the hand embroidery craft of Eshaal's Gulkari, owned by Tazeen Faisal Khan. Discover our seasonal Summer, Winter, and Luxury collections." },
+      { property: "og:url", content: "https://eshaalsgulkari.com/about" },
+      { property: "og:image", content: "https://eshaalsgulkari.com/images/craft-story.jpg" },
     ],
+    links: [{ rel: "canonical", href: "/about" }],
   }),
   component: AboutPage,
 });
@@ -60,7 +65,7 @@ function AboutPage() {
           <div className="absolute -inset-3 stitch-border" />
           <img
             src="/images/craft-story.jpg"
-            alt="Intricate embroidery threadwork by hand"
+            alt="Delicate hand-embroidered flowers in violet"
             className="relative aspect-square w-full rounded-md object-cover shadow-md"
             loading="lazy"
           />
@@ -72,11 +77,8 @@ function AboutPage() {
           <Heart className="mx-auto h-8 w-8 text-accent" />
           <h2 className="mt-4 font-serif text-2xl text-primary md:text-3xl">Tazeen Faisal Khan</h2>
           <p className="mt-4 text-base leading-relaxed text-foreground/80">
-            Eshaal's Gulkari is owned and founded by Tazeen Faisal Khan, who directs the brand.
+            Eshaal's Gulkari is guided and curated by Tazeen Faisal Khan, who directs the brand's aesthetic. Tazeen launched the label out of a deep reverence for the vanishing art of hand embroidery, with a vision to preserve traditional artisans' skills while making heritage craftsmanship accessible to the modern woman. Her designs honor the patient, rhythmic pacing of needlework, and each seasonal collection is produced in small, limited numbers to maintain pure quality.
           </p>
-          <div className="mx-auto mt-4 max-w-md text-xs text-muted-foreground/80">
-            [PLACEHOLDER: founder bio details]
-          </div>
         </div>
       </section>
 

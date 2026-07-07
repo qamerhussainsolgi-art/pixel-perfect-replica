@@ -18,6 +18,7 @@ export function SiteFooter() {
               <li><Link to="/collections/$category" params={{ category: "summer" }} className="hover:text-primary">Summer</Link></li>
               <li><Link to="/collections/$category" params={{ category: "winter" }} className="hover:text-primary">Winter</Link></li>
               <li><Link to="/collections/$category" params={{ category: "luxury" }} className="hover:text-primary">Luxury</Link></li>
+              <li><Link to="/custom-orders" className="hover:text-primary">Custom Orders</Link></li>
               <li><Link to="/blog" className="hover:text-primary">Journal</Link></li>
             </ul>
           </div>

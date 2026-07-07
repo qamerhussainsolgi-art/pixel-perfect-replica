@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "";
+const BASE_URL = "https://eshaalsgulkari.com";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           supabase.from("products").select("seo_slug, updated_at"),
           supabase.from("blog_posts").select("seo_slug, updated_at").not("published_date", "is", null),
         ]);
-        const staticPaths = ["/", "/collections", "/collections/summer", "/collections/winter", "/collections/luxury", "/blog"];
+        const staticPaths = ["/", "/collections", "/collections/summer", "/collections/winter", "/collections/luxury", "/blog", "/custom-orders", "/about", "/contact"];
         const urls: string[] = [];
         for (const p of staticPaths) urls.push(`<url><loc>${BASE_URL}${p}</loc><changefreq>weekly</changefreq></url>`);
         for (const p of products ?? []) urls.push(`<url><loc>${BASE_URL}/product/${p.seo_slug}</loc><lastmod>${p.updated_at}</lastmod></url>`);

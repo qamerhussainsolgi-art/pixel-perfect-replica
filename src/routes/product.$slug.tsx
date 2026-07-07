@@ -28,15 +28,17 @@ export const Route = createFileRoute("/product/$slug")({
       return { meta: [{ title: "Product not found" }, { name: "robots", content: "noindex" }] };
     }
     const p = loaderData as any;
+    const computedTitle = `${p.name} | Hand-Embroidered Suit | Eshaal's Gulkari`;
+    const canonicalUrl = `https://eshaalsgulkari.com/product/${params.slug}`;
     return {
       meta: [
-        { title: `${p.seo_title || p.name} — Eshaal's Gulkari` },
+        { title: computedTitle },
         { name: "description", content: p.seo_description || p.description?.slice(0, 155) || "" },
         { property: "og:title", content: p.name },
         { property: "og:description", content: p.seo_description || p.description?.slice(0, 155) || "" },
         { property: "og:type", content: "product" },
-        { property: "og:url", content: `/product/${params.slug}` },
-        { property: "og:image", content: p.images?.[0] || "" },
+        { property: "og:url", content: canonicalUrl },
+        { property: "og:image", content: p.images?.[0] || "https://eshaalsgulkari.com/images/luxury.jpg" },
       ],
       links: [{ rel: "canonical", href: `/product/${params.slug}` }],
       scripts: [{
@@ -86,7 +88,7 @@ function ProductPage() {
         {/* Gallery */}
         <div className="md:col-span-7">
           <div className="overflow-hidden rounded-md bg-secondary">
-            <img src={images[active]} alt={p.name} className="aspect-[4/5] w-full object-cover" />
+            <img src={images[active]} alt={`${p.name} - View ${active + 1}`} className="aspect-[4/5] w-full object-cover" />
           </div>
           {images.length > 1 && (
             <div className="mt-3 flex gap-2 overflow-x-auto">
@@ -96,7 +98,7 @@ function ProductPage() {
                   onClick={() => setActive(i)}
                   className={`h-20 w-16 shrink-0 overflow-hidden rounded ${i === active ? "ring-2 ring-primary" : "ring-1 ring-border"}`}
                 >
-                  <img src={img} alt="" className="h-full w-full object-cover" loading="lazy" />
+                  <img src={img} alt={`${p.name} - Thumbnail ${i + 1}`} className="h-full w-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>

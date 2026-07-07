@@ -16,7 +16,13 @@ const schema = z.object({
 
 export const Route = createFileRoute("/signup")({
   validateSearch: searchSchema,
-  head: () => ({ meta: [{ title: "Create account — Eshaal's Gulkari" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ 
+    meta: [
+      { title: "Create account — Eshaal's Gulkari" }, 
+      { name: "robots", content: "noindex" }
+    ],
+    links: [{ rel: "canonical", href: "/signup" }],
+  }),
   component: SignupPage,
 });
 

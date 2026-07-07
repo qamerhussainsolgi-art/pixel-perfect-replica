@@ -28,14 +28,15 @@ export const Route = createFileRoute("/collections/$category")({
   head: ({ params }) => {
     const cat = params.category as Cat;
     const label = COLLECTION_LABEL[cat] ?? "Collection";
+    const customTitle = `${label} Hand-Embroidered Collection | Eshaal's Gulkari`;
     return {
       meta: [
-        { title: `${label} Collection — Eshaal's Gulkari` },
+        { title: customTitle },
         { name: "description", content: `${label} hand-embroidered pieces. ${COLLECTION_TAGLINE[cat] ?? ""}` },
-        { property: "og:title", content: `${label} Collection — Eshaal's Gulkari` },
+        { property: "og:title", content: customTitle },
         { property: "og:description", content: COLLECTION_TAGLINE[cat] ?? "" },
-        { property: "og:url", content: `/collections/${cat}` },
-        { property: "og:image", content: `/images/${cat}.jpg` },
+        { property: "og:url", content: `https://eshaalsgulkari.com/collections/${cat}` },
+        { property: "og:image", content: `https://eshaalsgulkari.com/images/${cat}.jpg` },
       ],
       links: [{ rel: "canonical", href: `/collections/${cat}` }],
     };

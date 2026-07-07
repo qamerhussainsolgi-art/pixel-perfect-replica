@@ -8,11 +8,11 @@ import { supabase } from "@/integrations/supabase/client";
 const nav = [
   { to: "/", label: "Home" },
   { to: "/collections", label: "Collections" },
+  { to: "/custom-orders", label: "Custom Orders" },
   { to: "/blog", label: "Journal" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
-
 
 export function SiteHeader() {
   const { count } = useCart();

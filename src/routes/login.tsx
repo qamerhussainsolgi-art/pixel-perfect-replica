@@ -8,7 +8,13 @@ const searchSchema = z.object({ redirect: z.string().optional() });
 
 export const Route = createFileRoute("/login")({
   validateSearch: searchSchema,
-  head: () => ({ meta: [{ title: "Sign in — Eshaal's Gulkari" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ 
+    meta: [
+      { title: "Sign in — Eshaal's Gulkari" }, 
+      { name: "robots", content: "noindex" }
+    ],
+    links: [{ rel: "canonical", href: "/login" }],
+  }),
   component: LoginPage,
 });
 

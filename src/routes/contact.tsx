@@ -7,12 +7,17 @@ import { MessageCircle, Mail, Truck, Send } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — Eshaal's Gulkari" },
+      { title: "Contact Eshaal's Gulkari | Order & Design Support" },
       {
         name: "description",
         content: "Get in touch with Eshaal's Gulkari. Reach out directly via WhatsApp for personal assistance or send us a message through our contact form.",
       },
+      { property: "og:title", content: "Contact Eshaal's Gulkari | Order & Design Support" },
+      { property: "og:description", content: "Get in touch with Eshaal's Gulkari. Reach out directly via WhatsApp for personal assistance or send us a message through our contact form." },
+      { property: "og:url", content: "https://eshaalsgulkari.com/contact" },
+      { property: "og:image", content: "https://eshaalsgulkari.com/images/craft-story.jpg" },
     ],
+    links: [{ rel: "canonical", href: "/contact" }],
   }),
   component: ContactPage,
 });
@@ -40,7 +45,7 @@ function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      const { error } = await (supabase.from("contact_submissions" as any) as any).insert([
+      const { error } = await supabase.from("contact_submissions").insert([
         {
           name: name.trim(),
           email: email.trim(),
