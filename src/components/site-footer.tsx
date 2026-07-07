@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Facebook, Instagram, MessageCircle } from "lucide-react";
 
 export function SiteFooter() {
   return (
