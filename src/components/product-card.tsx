@@ -30,7 +30,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
         <div className="aspect-[4/5] overflow-hidden">
           <img
             src={img}
-            alt={product.name}
+            alt={`Hand-embroidered model piece: ${product.name}`}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />

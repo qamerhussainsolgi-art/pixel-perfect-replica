@@ -77,7 +77,7 @@ function ProfilePage() {
       <hr className="stitch-divider my-6" />
       <div className="stitch-border rounded-lg bg-card p-6 md:p-8">
         <div className="flex items-center justify-between mb-6">
-          <p className="text-xs uppercase tracking-wider text-accent">{admin.role} Access</p>
+          <p className="text-xs uppercase tracking-wider text-accent">{admin.role === "client" ? "ADMIN" : admin.role} Access</p>
           {!editing && (
             <button onClick={() => setEditing(true)} className="inline-flex touch-min items-center gap-1.5 text-xs text-primary underline font-medium cursor-pointer">
               <Edit3 className="h-3.5 w-3.5" /> Edit Profile

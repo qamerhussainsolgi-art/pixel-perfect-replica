@@ -29,6 +29,25 @@ function ProductsAdmin() {
   const [inlineNewProductType, setInlineNewProductType] = useState(false);
   const [inlineProductTypeName, setInlineProductTypeName] = useState("");
 
+  // Retrieve draft product if page was reloaded during upload/gallery operations
+  useEffect(() => {
+    const draft = sessionStorage.getItem("draft-product");
+    if (draft) {
+      try {
+        setEditing(JSON.parse(draft));
+      } catch (e) {
+        console.error("Failed to parse draft product", e);
+      }
+    }
+  }, []);
+
+  // Save changes to draft product in real-time
+  useEffect(() => {
+    if (editing) {
+      sessionStorage.setItem("draft-product", JSON.stringify(editing));
+    }
+  }, [editing]);
+
   async function load() {
     const [{ data: p }, { data: sc }, { data: pt }] = await Promise.all([
       supabase.from("products").select("*, seasonal_category:seasonal_categories(id, name), product_type_category:product_type_categories(id, name)").order("created_at", { ascending: false }),
@@ -149,8 +168,14 @@ function ProductsAdmin() {
       if (error) return toast.error(error.message);
     }
     toast.success("Saved");
+    sessionStorage.removeItem("draft-product");
     setEditing(null); load();
   }
+
+  const handleCancel = () => {
+    sessionStorage.removeItem("draft-product");
+    setEditing(null);
+  };
 
   async function remove(id: string) {
     if (!confirm("Delete this product?")) return;
@@ -239,7 +264,7 @@ function ProductsAdmin() {
       )}
 
       {editing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setEditing(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={handleCancel}>
           <div onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-card p-6">
             <h2 className="font-serif text-2xl text-primary">{editing.id ? "Edit product" : "New product"}</h2>
             <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -323,7 +348,7 @@ function ProductsAdmin() {
             </div>
             <div className="mt-6 flex gap-3">
               <button onClick={save} className="touch-min flex-1 rounded-md bg-primary text-sm text-primary-foreground">Save</button>
-              <button onClick={() => setEditing(null)} className="touch-min flex-1 rounded-md border border-input text-sm">Cancel</button>
+              <button onClick={handleCancel} className="touch-min flex-1 rounded-md border border-input text-sm">Cancel</button>
             </div>
           </div>
         </div>
