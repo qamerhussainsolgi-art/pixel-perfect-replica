@@ -30,6 +30,35 @@ export function SiteFooter() {
               <li>WhatsApp orders welcome</li>
               <li>Shipping across Pakistan</li>
             </ul>
+            <div className="mt-4 flex items-center gap-3">
+              <a
+                href="https://www.facebook.com/share/1Cu4eXGmLW/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/eshaals_gulkari"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://wa.me/923164349900"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <MessageCircle className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
         <div className="mt-10 flex flex-col items-start justify-between gap-2 border-t border-dashed border-lavender/60 pt-6 text-xs text-muted-foreground md:flex-row md:items-center">
