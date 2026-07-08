@@ -7,6 +7,21 @@ export const Route = createFileRoute("/api/public/send-order-emails")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        // Auth: shared-secret header. Rejects unauthenticated enumeration attempts.
+        const INTERNAL_TOKEN = process.env.INTERNAL_API_TOKEN;
+        if (!INTERNAL_TOKEN) {
+          console.error("[send-order-emails] INTERNAL_API_TOKEN not configured");
+          return new Response("Server misconfigured", { status: 500 });
+        }
+        const providedToken = request.headers.get("x-internal-token") ?? "";
+        // Constant-time compare
+        const a = Buffer.from(providedToken);
+        const b = Buffer.from(INTERNAL_TOKEN);
+        const { timingSafeEqual } = await import("crypto");
+        if (a.length !== b.length || !timingSafeEqual(a, b)) {
+          return new Response("Unauthorized", { status: 401 });
+        }
+
         const body = await request.json().catch(() => null);
         const parsed = bodySchema.safeParse(body);
         if (!parsed.success) return new Response("Bad request", { status: 400 });
@@ -22,7 +37,6 @@ export const Route = createFileRoute("/api/public/send-order-emails")({
         const RESEND_KEY = process.env.RESEND_API_KEY;
         const LOVABLE_KEY = process.env.LOVABLE_API_KEY;
         if (!RESEND_KEY || !LOVABLE_KEY) {
-          // Emails will be enabled when Resend connector is connected.
           return Response.json({ ok: false, skipped: "resend_not_connected" });
         }
 
