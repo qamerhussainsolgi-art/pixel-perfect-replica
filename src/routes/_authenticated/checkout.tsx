@@ -46,13 +46,16 @@ function CheckoutPage() {
     setBusy(false);
     if (error) { toast.error(error.message); return; }
 
-    // Fire email notifications (best-effort)
+    // Fire email notifications (best-effort). Requires the shared internal token.
     try {
-      await fetch("/api/public/send-order-emails", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ order_id: order.id }),
-      });
+      const token = import.meta.env.VITE_INTERNAL_API_TOKEN as string | undefined;
+      if (token) {
+        await fetch("/api/public/send-order-emails", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-internal-token": token },
+          body: JSON.stringify({ order_id: order.id }),
+        });
+      }
     } catch { /* ignore */ }
 
     clear();
