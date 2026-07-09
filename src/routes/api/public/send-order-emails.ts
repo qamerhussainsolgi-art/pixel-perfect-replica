@@ -92,8 +92,8 @@ export const Route = createFileRoute("/api/public/send-order-emails")({
           </div>
         `;
 
-        const notesBlock = order.notes
-          ? `<p style="margin:8px 0"><strong>Notes:</strong> ${order.notes}</p>`
+        const notesBlock = order.order_notes
+          ? `<p style="margin:8px 0"><strong>Notes:</strong> ${order.order_notes}</p>`
           : "";
         const adminRows = orderItems
           .map(
