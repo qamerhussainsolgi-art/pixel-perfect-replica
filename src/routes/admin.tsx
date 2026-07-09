@@ -2,7 +2,7 @@ import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tan
 import { useState } from "react";
 import { AdminGate, useAdmin } from "@/lib/admin-auth";
 import { supabase } from "@/integrations/supabase/client";
-import { LayoutDashboard, Package, ShoppingCart, BookOpen, User, Settings, LineChart, Search, ScrollText, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Package, Gem, ShoppingCart, BookOpen, User, Settings, LineChart, Search, ScrollText, LogOut, Menu, X } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin — Eshaal's Gulkari" }, { name: "robots", content: "noindex" }] }),
@@ -16,6 +16,7 @@ export const Route = createFileRoute("/admin")({
 const CLIENT_NAV = [
   { to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/admin/products", label: "Products", icon: Package },
+  { to: "/admin/jewelry", label: "Jewelry", icon: Gem },
   { to: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { to: "/admin/blog", label: "Blog posts", icon: BookOpen },
   { to: "/admin/profile", label: "My profile", icon: User },

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
+import { Eye, EyeOff } from "lucide-react";
 
 const searchSchema = z.object({ redirect: z.string().optional() });
 
@@ -23,6 +24,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [busy, setBusy] = useState(false);
 
   async function submit(e: React.FormEvent) {
@@ -69,7 +71,23 @@ function LoginPage() {
             </label>
             <label className="block text-sm">
               <span className="mb-1 block text-foreground/80">Password</span>
-              <input required type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="touch-min w-full rounded-md border border-input bg-background px-3" />
+              <div className="relative">
+                <input
+                  required
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="touch-min w-full rounded-md border border-input bg-background px-3 pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground/60 hover:text-foreground z-10 flex items-center justify-center h-8 w-8 cursor-pointer border-0 bg-transparent"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
             </label>
             <button disabled={busy} className="touch-min w-full rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground disabled:opacity-60">
               {busy ? "Signing in…" : "Sign in"}

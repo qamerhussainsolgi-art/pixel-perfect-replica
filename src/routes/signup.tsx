@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
+import { Eye, EyeOff } from "lucide-react";
 
 const searchSchema = z.object({ redirect: z.string().optional() });
 
@@ -30,6 +31,7 @@ function SignupPage() {
   const search = useSearch({ from: "/signup" });
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", age: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const [busy, setBusy] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -70,13 +72,33 @@ function SignupPage() {
                 <span className="mb-1 block capitalize text-foreground/80">
                   {k === "age" ? "Age (optional)" : k === "name" ? "Full name" : k}
                 </span>
-                <input
-                  type={k === "password" ? "password" : k === "email" ? "email" : k === "age" ? "number" : "text"}
-                  required={k !== "age"}
-                  value={form[k]}
-                  onChange={(e) => setForm({ ...form, [k]: e.target.value })}
-                  className="touch-min w-full rounded-md border border-input bg-background px-3"
-                />
+                {k === "password" ? (
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      required
+                      value={form.password}
+                      onChange={(e) => setForm({ ...form, password: e.target.value })}
+                      className="touch-min w-full rounded-md border border-input bg-background px-3 pr-10"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground/60 hover:text-foreground z-10 flex items-center justify-center h-8 w-8 cursor-pointer border-0 bg-transparent"
+                      tabIndex={-1}
+                    >
+                      {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    </button>
+                  </div>
+                ) : (
+                  <input
+                    type={k === "email" ? "email" : k === "age" ? "number" : "text"}
+                    required={k !== "age"}
+                    value={form[k]}
+                    onChange={(e) => setForm({ ...form, [k]: e.target.value })}
+                    className="touch-min w-full rounded-md border border-input bg-background px-3"
+                  />
+                )}
                 {errors[k] && <span className="mt-1 block text-xs text-destructive">{errors[k]}</span>}
               </label>
             ))}
