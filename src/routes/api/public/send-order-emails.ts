@@ -35,9 +35,9 @@ export const Route = createFileRoute("/api/public/send-order-emails")({
         if (!order) return new Response("Not found", { status: 404 });
 
         const RESEND_KEY = process.env.RESEND_API_KEY;
-        const LOVABLE_KEY = process.env.LOVABLE_API_KEY;
-        if (!RESEND_KEY || !LOVABLE_KEY) {
-          return Response.json({ ok: false, skipped: "resend_not_connected" });
+        if (!RESEND_KEY) {
+          console.warn("[send-order-emails] RESEND_API_KEY not set; skipping email send");
+          return Response.json({ ok: false, skipped: "resend_not_configured" });
         }
 
         const items = (order.items as any[]).map((i: any) => `<li>${i.name} × ${i.qty} — PKR ${i.price * i.qty}</li>`).join("");
@@ -54,16 +54,26 @@ export const Route = createFileRoute("/api/public/send-order-emails")({
         const { data: admins } = await supabaseAdmin.from("admin_users").select("email");
         const adminEmails = (admins ?? []).map((a: { email: string }) => a.email);
 
-        const send = (to: string[], subject: string, html: string) =>
-          fetch("https://connector-gateway.lovable.dev/resend/emails", {
+        const send = async (to: string[], subject: string, html: string) => {
+          const response = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${LOVABLE_KEY}`,
-              "X-Connection-Api-Key": RESEND_KEY,
+              Authorization: `Bearer ${RESEND_KEY}`,
             },
-            body: JSON.stringify({ from: "Eshaal's Gulkari <onboarding@resend.dev>", to, subject, html }),
+            body: JSON.stringify({
+              from: "Eshaal's Gulkari <orders@eshaalsgulkari.com>",
+              to,
+              subject,
+              html,
+            }),
           });
+          if (!response.ok) {
+            const errorBody = await response.text();
+            console.error(`[send-order-emails] Resend API error: ${response.status} ${errorBody}`);
+          }
+          return response;
+        };
 
         const results: any = {};
         if (customerEmail) results.customer = (await send([customerEmail], "Your Eshaal's Gulkari order", customerHtml)).status;
