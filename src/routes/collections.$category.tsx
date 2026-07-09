@@ -2,7 +2,8 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { ProductCard, type ProductCardData } from "@/components/product-card";
-import { COLLECTION_LABEL, COLLECTION_PRICE, COLLECTION_TAGLINE, PriceBadge } from "@/components/price-badge";
+import { COLLECTION_LABEL, COLLECTION_TAGLINE, PriceBadge } from "@/components/price-badge";
+import { formatPKR } from "@/lib/cart";
 
 const VALID = ["summer", "winter", "luxury"] as const;
 type Cat = typeof VALID[number];
@@ -12,8 +13,8 @@ const byCatQO = (cat: Cat) => queryOptions({
   queryFn: async () => {
     const { data, error } = await supabase
       .from("products")
-      .select("id, name, price, collection, images, seo_slug")
-      .eq("collection", cat)
+      .select("id, name, price, discount_percentage, images, image_url_1, seo_slug, seasonal_category:seasonal_categories!inner(name)")
+      .ilike("seasonal_category.name", cat)
       .order("price");
     if (error) throw error;
     return (data ?? []) as ProductCardData[];
@@ -55,13 +56,21 @@ function CategoryPage() {
   const cat = category as Cat;
   const { data: items } = useSuspenseQuery(byCatQO(cat));
 
+  const priceRangeLabel = (() => {
+    if (items.length === 0) return null;
+    const prices = items.map((p) => Number(p.price));
+    const min = Math.min(...prices);
+    const max = Math.max(...prices);
+    return min === max ? formatPKR(min) : `${formatPKR(min)} – ${formatPKR(max)}`;
+  })();
+
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-10 md:px-8 md:py-16">
       <header className="mb-10 md:mb-14">
         <Link to="/collections" className="text-xs uppercase tracking-[0.3em] text-accent hover:text-primary">← All collections</Link>
         <div className="mt-3 flex flex-wrap items-baseline justify-between gap-3">
           <h1 className="font-serif text-4xl text-primary md:text-5xl">{COLLECTION_LABEL[cat]}</h1>
-          <PriceBadge label={COLLECTION_PRICE[cat]} />
+          {priceRangeLabel && <PriceBadge label={priceRangeLabel} />}
         </div>
         <p className="mt-3 max-w-lg text-sm text-muted-foreground">{COLLECTION_TAGLINE[cat]}</p>
       </header>

@@ -344,6 +344,33 @@ function ProductsAdmin() {
               <label className="text-sm"><span className="text-foreground/80">Fabric</span><input value={editing.fabric || ""} onChange={(e) => setEditing({ ...editing, fabric: e.target.value })} className="mt-1 touch-min w-full rounded-md border border-input bg-background px-3" /></label>
               <label className="text-sm"><span className="text-foreground/80">Care</span><input value={editing.care || ""} onChange={(e) => setEditing({ ...editing, care: e.target.value })} className="mt-1 touch-min w-full rounded-md border border-input bg-background px-3" /></label>
               <label className="text-sm md:col-span-2"><span className="text-foreground/80">Sizing</span><input value={editing.sizing || ""} onChange={(e) => setEditing({ ...editing, sizing: e.target.value })} className="mt-1 touch-min w-full rounded-md border border-input bg-background px-3" /></label>
+              <div className="text-sm md:col-span-2">
+                <span className="text-foreground/80 block font-medium mb-2">Stock Status</span>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setEditing({ ...editing, stock_status: "in_stock" })}
+                    className={`touch-min rounded-md text-sm font-medium border transition-colors ${
+                      editing.stock_status === "in_stock"
+                        ? "bg-green-600 text-white border-green-600"
+                        : "bg-background border-input text-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    In Stock
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setEditing({ ...editing, stock_status: "out_of_stock" })}
+                    className={`touch-min rounded-md text-sm font-medium border transition-colors ${
+                      editing.stock_status === "out_of_stock"
+                        ? "bg-destructive text-destructive-foreground border-destructive"
+                        : "bg-background border-input text-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    Out of Stock
+                  </button>
+                </div>
+              </div>
               <label className="flex items-center gap-2 text-sm md:col-span-2"><input type="checkbox" checked={!!editing.featured} onChange={(e) => setEditing({ ...editing, featured: e.target.checked })} /> Featured on homepage</label>
             </div>
             <div className="mt-6 flex gap-3">

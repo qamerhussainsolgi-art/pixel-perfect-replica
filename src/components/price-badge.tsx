@@ -26,6 +26,6 @@ export const COLLECTION_IMAGE: Record<string, string> = {
 
 export const COLLECTION_TAGLINE: Record<string, string> = {
   summer: "Lawn and cotton net suits — hand embroidered for everyday warmth.",
-  winter: "Pure wool shawls — 30% off original price.",
-  luxury: "Hand-embroidered silk and pure chiffon — 20% off original price.",
+  winter: "Pure wool shawls — hand embroidered for the winter season.",
+  luxury: "Hand-embroidered silk and pure chiffon — crafted for special occasions.",
 };

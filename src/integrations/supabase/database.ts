@@ -63,6 +63,54 @@ type Extras = {
     };
     Relationships: [];
   };
+  jewelry_products: {
+    Row: {
+      id: string;
+      name: string;
+      description: string | null;
+      price: number;
+      discount_percentage: number | null;
+      image_url_1: string | null;
+      image_url_2: string | null;
+      image_url_3: string | null;
+      image_url_4: string | null;
+      stock_status: string;
+      seo_slug: string;
+      created_at: string;
+      updated_at: string;
+    };
+    Insert: {
+      id?: string;
+      name: string;
+      description?: string | null;
+      price: number;
+      discount_percentage?: number | null;
+      image_url_1?: string | null;
+      image_url_2?: string | null;
+      image_url_3?: string | null;
+      image_url_4?: string | null;
+      stock_status?: string;
+      seo_slug: string;
+      created_at?: string;
+      updated_at?: string;
+    };
+    Update: {
+      id?: string;
+      name?: string;
+      description?: string | null;
+      price?: number;
+      discount_percentage?: number | null;
+      image_url_1?: string | null;
+      image_url_2?: string | null;
+      image_url_3?: string | null;
+      image_url_4?: string | null;
+      stock_status?: string;
+      seo_slug?: string;
+      created_at?: string;
+      updated_at?: string;
+    };
+    Relationships: [];
+  };
 };
 
 type ProductExtras = {

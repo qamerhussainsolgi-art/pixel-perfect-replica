@@ -19,9 +19,11 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JewelryIndexRouteImport } from './routes/jewelry.index'
 import { Route as CollectionsIndexRouteImport } from './routes/collections.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
+import { Route as JewelrySlugRouteImport } from './routes/jewelry.$slug'
 import { Route as CollectionsCategoryRouteImport } from './routes/collections.$category'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
@@ -30,6 +32,7 @@ import { Route as AdminProfileRouteImport } from './routes/admin.profile'
 import { Route as AdminProductsRouteImport } from './routes/admin.products'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminLogsRouteImport } from './routes/admin.logs'
+import { Route as AdminJewelryRouteImport } from './routes/admin.jewelry'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
@@ -87,6 +90,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JewelryIndexRoute = JewelryIndexRouteImport.update({
+  id: '/jewelry/',
+  path: '/jewelry/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CollectionsIndexRoute = CollectionsIndexRouteImport.update({
   id: '/collections/',
   path: '/collections/',
@@ -100,6 +108,11 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
 const ProductSlugRoute = ProductSlugRouteImport.update({
   id: '/product/$slug',
   path: '/product/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JewelrySlugRoute = JewelrySlugRouteImport.update({
+  id: '/jewelry/$slug',
+  path: '/jewelry/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionsCategoryRoute = CollectionsCategoryRouteImport.update({
@@ -140,6 +153,11 @@ const AdminOrdersRoute = AdminOrdersRouteImport.update({
 const AdminLogsRoute = AdminLogsRouteImport.update({
   id: '/logs',
   path: '/logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminJewelryRoute = AdminJewelryRouteImport.update({
+  id: '/jewelry',
+  path: '/jewelry',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
@@ -195,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/jewelry': typeof AdminJewelryRoute
   '/admin/logs': typeof AdminLogsRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/products': typeof AdminProductsRoute
@@ -203,9 +222,11 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/collections/$category': typeof CollectionsCategoryRoute
+  '/jewelry/$slug': typeof JewelrySlugRoute
   '/product/$slug': typeof ProductSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/collections/': typeof CollectionsIndexRoute
+  '/jewelry/': typeof JewelryIndexRoute
   '/api/public/send-order-emails': typeof ApiPublicSendOrderEmailsRoute
   '/account/': typeof AuthenticatedAccountIndexRoute
   '/account/orders/$id': typeof AuthenticatedAccountOrdersIdRoute
@@ -224,6 +245,7 @@ export interface FileRoutesByTo {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/jewelry': typeof AdminJewelryRoute
   '/admin/logs': typeof AdminLogsRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/products': typeof AdminProductsRoute
@@ -232,9 +254,11 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/collections/$category': typeof CollectionsCategoryRoute
+  '/jewelry/$slug': typeof JewelrySlugRoute
   '/product/$slug': typeof ProductSlugRoute
   '/blog': typeof BlogIndexRoute
   '/collections': typeof CollectionsIndexRoute
+  '/jewelry': typeof JewelryIndexRoute
   '/api/public/send-order-emails': typeof ApiPublicSendOrderEmailsRoute
   '/account': typeof AuthenticatedAccountIndexRoute
   '/account/orders/$id': typeof AuthenticatedAccountOrdersIdRoute
@@ -255,6 +279,7 @@ export interface FileRoutesById {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/jewelry': typeof AdminJewelryRoute
   '/admin/logs': typeof AdminLogsRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/products': typeof AdminProductsRoute
@@ -263,9 +288,11 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/collections/$category': typeof CollectionsCategoryRoute
+  '/jewelry/$slug': typeof JewelrySlugRoute
   '/product/$slug': typeof ProductSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/collections/': typeof CollectionsIndexRoute
+  '/jewelry/': typeof JewelryIndexRoute
   '/api/public/send-order-emails': typeof ApiPublicSendOrderEmailsRoute
   '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
   '/_authenticated/account/orders/$id': typeof AuthenticatedAccountOrdersIdRoute
@@ -286,6 +313,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/blog'
     | '/admin/dashboard'
+    | '/admin/jewelry'
     | '/admin/logs'
     | '/admin/orders'
     | '/admin/products'
@@ -294,9 +322,11 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/blog/$slug'
     | '/collections/$category'
+    | '/jewelry/$slug'
     | '/product/$slug'
     | '/blog/'
     | '/collections/'
+    | '/jewelry/'
     | '/api/public/send-order-emails'
     | '/account/'
     | '/account/orders/$id'
@@ -315,6 +345,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/blog'
     | '/admin/dashboard'
+    | '/admin/jewelry'
     | '/admin/logs'
     | '/admin/orders'
     | '/admin/products'
@@ -323,9 +354,11 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/blog/$slug'
     | '/collections/$category'
+    | '/jewelry/$slug'
     | '/product/$slug'
     | '/blog'
     | '/collections'
+    | '/jewelry'
     | '/api/public/send-order-emails'
     | '/account'
     | '/account/orders/$id'
@@ -345,6 +378,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/blog'
     | '/admin/dashboard'
+    | '/admin/jewelry'
     | '/admin/logs'
     | '/admin/orders'
     | '/admin/products'
@@ -353,9 +387,11 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/blog/$slug'
     | '/collections/$category'
+    | '/jewelry/$slug'
     | '/product/$slug'
     | '/blog/'
     | '/collections/'
+    | '/jewelry/'
     | '/api/public/send-order-emails'
     | '/_authenticated/account/'
     | '/_authenticated/account/orders/$id'
@@ -374,9 +410,11 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CollectionsCategoryRoute: typeof CollectionsCategoryRoute
+  JewelrySlugRoute: typeof JewelrySlugRoute
   ProductSlugRoute: typeof ProductSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   CollectionsIndexRoute: typeof CollectionsIndexRoute
+  JewelryIndexRoute: typeof JewelryIndexRoute
   ApiPublicSendOrderEmailsRoute: typeof ApiPublicSendOrderEmailsRoute
 }
 
@@ -452,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/jewelry/': {
+      id: '/jewelry/'
+      path: '/jewelry'
+      fullPath: '/jewelry/'
+      preLoaderRoute: typeof JewelryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/collections/': {
       id: '/collections/'
       path: '/collections'
@@ -471,6 +516,13 @@ declare module '@tanstack/react-router' {
       path: '/product/$slug'
       fullPath: '/product/$slug'
       preLoaderRoute: typeof ProductSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jewelry/$slug': {
+      id: '/jewelry/$slug'
+      path: '/jewelry/$slug'
+      fullPath: '/jewelry/$slug'
+      preLoaderRoute: typeof JewelrySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/collections/$category': {
@@ -527,6 +579,13 @@ declare module '@tanstack/react-router' {
       path: '/logs'
       fullPath: '/admin/logs'
       preLoaderRoute: typeof AdminLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/jewelry': {
+      id: '/admin/jewelry'
+      path: '/jewelry'
+      fullPath: '/admin/jewelry'
+      preLoaderRoute: typeof AdminJewelryRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/dashboard': {
@@ -600,6 +659,7 @@ interface AdminRouteChildren {
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminJewelryRoute: typeof AdminJewelryRoute
   AdminLogsRoute: typeof AdminLogsRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
   AdminProductsRoute: typeof AdminProductsRoute
@@ -612,6 +672,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminJewelryRoute: AdminJewelryRoute,
   AdminLogsRoute: AdminLogsRoute,
   AdminOrdersRoute: AdminOrdersRoute,
   AdminProductsRoute: AdminProductsRoute,
@@ -635,9 +696,11 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogSlugRoute: BlogSlugRoute,
   CollectionsCategoryRoute: CollectionsCategoryRoute,
+  JewelrySlugRoute: JewelrySlugRoute,
   ProductSlugRoute: ProductSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   CollectionsIndexRoute: CollectionsIndexRoute,
+  JewelryIndexRoute: JewelryIndexRoute,
   ApiPublicSendOrderEmailsRoute: ApiPublicSendOrderEmailsRoute,
 }
 export const routeTree = rootRouteImport
